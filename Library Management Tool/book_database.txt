@@ -1,2 +1,3 @@
-42	New Book	kfvd	23	2
-234	Harry Potter	Harsh	899	2
+1	Think and grow Rich	Napoleon Hill	500	0
+2	Ikigai	Hector Garcia	200	3
+3	Psychology of Money	Morgan Housel	400	1

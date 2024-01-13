@@ -74,11 +74,7 @@ class Transaction {
     }
     void finePaid(int borrowerID){
 
-    }
-    
-    
-    
-    
+    }  
 };
 
 class Library {
@@ -530,9 +526,9 @@ int main() {
                 cout<<"Currently no book is issued!"<<endl;
             }
             for(auto borrowerPair : myLibrary.borrowerBooks){
-                if(myLibrary.borrowerBooks[borrowerPair.first].size() == 0){
-                    continue;
-                }
+                // if(myLibrary.borrowerBooks[borrowerPair.first].size() == 0){
+                //     continue;
+                // }
                 cout<<"\t \t \t \tBorrower ID : "<<borrowerPair.first<<" "<<"Borrower's Name : "<<myLibrary.borrowerInformation[borrowerPair.first].borrowerName<<" has following books :" <<endl;
                 for(auto books : myLibrary.borrowerBooks[borrowerPair.first]){
                     cout<<"Book ISBN : "<<books.first<< " Book's Name :" <<myLibrary.bookInformation[books.first].title<< " Borrowed Date : "<<books.second<<endl;
@@ -567,6 +563,10 @@ int main() {
             cout<<"Enter Borrower's ID : "<<endl;
             int borrowerId ;
             cin>>borrowerId;
+            if(myLibrary.borrowerBooks[borrowerId].size() == 0){
+                cout<<"Borrower has no book issued!"<<endl;
+                break;
+            }
             for(auto books : myLibrary.borrowerBooks[borrowerId]){
                 cout<<"Book ISBN : "<<books.first<< " Book's Name :" <<myLibrary.bookInformation[books.first].title<< " Borrowed Date : "<<books.second<<endl;
             }
@@ -683,6 +683,7 @@ int main() {
             myLibrary.saveBookData();
             myLibrary.saveBorrowerData();
             myLibrary.saveIssuedBooksData();
+            myLibrary.saveBorrowersFineData();
             exit(0);
         }
             
