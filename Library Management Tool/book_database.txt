@@ -1,3 +1,4 @@
 1	Think and grow Rich	Napoleon Hill	500	0
 2	Ikigai	Hector Garcia	200	3
 3	Psychology of Money	Morgan Housel	400	1
+77	harsh77	harsh	1000	1

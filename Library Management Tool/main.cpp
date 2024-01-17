@@ -72,9 +72,6 @@ class Transaction {
         }
         return fine;
     }
-    void finePaid(int borrowerID){
-
-    }  
 };
 
 class Library {
