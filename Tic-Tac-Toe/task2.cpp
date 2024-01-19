@@ -20,45 +20,56 @@ bool isValidMove(const vector<vector<string>>& board, int row, int col) {
 }
 
 bool winCondition(const vector<vector<string>>& board, const string& currPlayer, int row, int col) {
-    //checking this row
     bool isWinner = true;
-    for(int j=0;j<3;j++){
-        if(board[row][j] != currPlayer){
+    for (int j = 0; j < 3; j++) {
+        if (board[row][j] != currPlayer) {
             isWinner = false;
             break;
         }
     }
-    if(isWinner)return true;
+    if (isWinner) return true;
+
     isWinner = true;
-    for(int i=0;i<3;i++){
-        if(board[i][col]!=currPlayer){
+    for (int i = 0; i < 3; i++) {
+        if (board[i][col] != currPlayer) {
             isWinner = false;
             break;
         }
     }
-    if(isWinner)return true;
-    
-    if(row == col){
+    if (isWinner) return true;
+
+    if (row == col) {
         isWinner = true;
-        for(int i=0;i<3;i++){
-            if(board[i][i]!=currPlayer){
+        for (int i = 0; i < 3; i++) {
+            if (board[i][i] != currPlayer) {
                 isWinner = false;
                 break;
             }
         }
     }
-    if(isWinner)return true;
-    
-    if(row + col == 2){
+    if (isWinner) return true;
+
+    if (row + col == 2) {
         isWinner = true;
-        for(int i=0;i<3;i++){
-            if(board[i][2-i]!=currPlayer){
+        for (int i = 0; i < 3; i++) {
+            if (board[i][2 - i] != currPlayer) {
                 isWinner = false;
                 break;
             }
         }
     }
     return isWinner;
+}
+
+bool isBoardFull(const vector<vector<string>>& board) {
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == "_") {
+                return false; 
+            }
+        }
+    }
+    return true;  
 }
 
 void updateBoard(vector<vector<string>>& board, int row, int col, const string& currPlayer) {
@@ -88,9 +99,11 @@ string start(vector<vector<string>>& board) {
             currPlayer = (currPlayer == player1) ? player2 : player1;
         } else {
             cout << "Invalid move. Try again." << endl;
+            cout<<endl;
+            steps++;
         }
     }
-    return ""; // No winner after all moves
+    return "";
 }
 
 int main() {
@@ -103,7 +116,11 @@ int main() {
     if (!winner.empty()) {
         cout << "Player " << winner << " won!" << endl;
     } else {
-        cout << "It's a draw!" << endl;
+        if (isBoardFull(board)) {
+            cout << "It's a draw!" << endl;
+        } else {
+            cout << "Game ended unexpectedly!" << endl;
+        }
     }
 
     return 0;
